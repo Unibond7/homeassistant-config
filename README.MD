@@ -4,12 +4,11 @@ Configuration files for [Home Assistant](http://homeassistant.io) (Great open so
 Running Hom Assistant 0.54.0 with
 * Mosquitto
 * Playstation 4
-* 
 
-* [Hardware](##hardware)
-* [Presence](##presence)
-* [Automations](##automations)
-* [ToDo](##todo)
+* [Hardware](#hardware)
+* [Presence](#presence)
+* [Automations](#automations)
+* [ToDo](#todo)
 
 ## Hardware
 ### Lights
