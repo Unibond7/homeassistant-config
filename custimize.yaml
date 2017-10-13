@@ -1,0 +1,61 @@
+group.all_automations:
+  hidden: false
+  friendly_name: Automations
+group.all_lights:
+  hidden: false
+  friendly_name: Lights
+device_tracker.tim_phone:
+  hidden: false
+updater.updater:
+  hidden: false
+
+group.tab_system_info:
+  icon: mdi:settings-box
+group.tab_living_room:
+  icon: mdi:sofa
+group.tab_automations:
+  icon: mdi:auto-fix
+group.tab_lights:
+  icon: mdi:lightbulb-on-outline
+
+sensor.yr_symbol:
+  friendly_name: Weather
+sun.sun:
+  hidden: true
+
+scene.movie:
+  icon: mdi:presentation-play
+scene.good_night:
+  icon: mdi:weather-night
+
+binary_sensor.tims_phone_ping:
+  friendly_name: Binary Phone
+  hidden: true
+
+sensor.time:
+  hidden: true
+sensor.time_to_leave_unix:
+  hidden: true
+sensor.time_to_leave_hour:
+  hidden: true
+sensor.time_to_leave_min:
+  hidden: true
+sensor.time_to_leave:
+  hidden: true
+
+sensor.hue_dimmer_switch_1:
+  friendly_name: Hue Dimmer Switch
+sensor.hue_motion_sensor_motion_1:
+  friendly_name: Hall Motion Sensor
+sensor.samsung_smg930f:
+  hidden: true
+
+binary_sensor.hall_motion_sensor_mqtt:
+  icon: mdi:run-fast
+
+sensor.speedtest_download:
+  friendly_name: Download
+sensor.speedtest_upload:
+  friendly_name: Upload
+sensor.speedtest_ping:
+  friendly_name: Ping

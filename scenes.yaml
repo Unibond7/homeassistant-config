@@ -1,0 +1,19 @@
+- name: Movie
+  entities:
+    light.hue_color_lamp:
+      state: on
+      brightness_pct: '50'
+    light.hue_bedroom_ambiance: off
+    light.hue_office_ambiance: off
+    media_player.sony_tv:
+      state: on
+      volume_level: 0.3
+
+- name: Good Night
+  entities:
+    light.hue_bedroom_ambiance:
+      state: on
+      brightness_pct: '50'
+    light.hue_color_lamp: off
+    light.hue_office_ambiance: off
+    media_player.sony_tv: off

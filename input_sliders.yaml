@@ -1,0 +1,22 @@
+rubyworkalarmhour:
+  name: Hour
+  icon: mdi:timer
+  initial: 6
+  min: 0
+  max: 23
+  step: 1
+rubyworkalarmminutes:
+  name: Minutes
+  icon: mdi:timer
+  initial: 20
+  min: 0
+  max: 59
+  step: 1
+rubyworkalarmtransition:
+  name: Transition
+  icon: mdi:timer
+  initial: 40
+  min: 0
+  max: 60
+  step: 5
+

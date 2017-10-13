@@ -1,0 +1,14 @@
+tim_phone:
+  name: Tim Home
+  initial: on
+  icon: mdi:cellphone-android
+
+rubyworkalarmstatus:
+  name: Alarm Status
+  initial: off
+  icon: mdi:alarm-check
+
+alarmweekday:
+  name: Weekdays Only
+  initial: off
+  icon: mdi:calendar

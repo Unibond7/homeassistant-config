@@ -1,0 +1,10 @@
+- platform: ping
+  host: 192.168.1.232
+  name: tims_phone_ping
+
+- platform: mqtt
+  device_class: motion
+  state_topic: hue/hue_motion_sensor_1/presence
+  name: 'Hall Motion Sensor (MQTT)'
+  payload_on: "true"
+  payload_off: "false"

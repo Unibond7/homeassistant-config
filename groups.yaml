@@ -1,0 +1,157 @@
+group_workalarmclock:
+  name: "Ruby's Work Alarm"
+  control: hidden
+  entities:
+    - input_boolean.rubyworkalarmstatus
+    - sensor.ruby_work_alarm_time
+    - input_slider.rubyworkalarmhour
+    - input_slider.rubyworkalarmminutes
+    - input_slider.rubyworkalarmtransition
+
+group_speedtest:
+  name: Speed Test Data
+  control: hidden
+  entities:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+
+group_hue_mqtt:
+  name: 'Hue Motion Sensor (MQTT)'
+  control: hidden
+  entities:
+    - binary_sensor.hall_motion_sensor_mqtt
+    - sensor.hall_temperature
+    - sensor.hall_light_level
+
+#group_hue_hass_comp:
+#  name: 'Hue Accesories'
+#  control: hidden
+#  entities:
+#    - sensor.hue_dimmer_switch_1
+#    - sensor.hue_motion_sensor_motion_1
+#    - sensor.samsung_smg930f
+
+group_system_monitor:
+  name: 'System Monitor'
+  control: hidden
+  entities:
+    - sensor.cpu_temperature
+    - sensor.cpu_use
+    - sensor.disk_use_
+    - sensor.ram_use
+
+group_scripts:
+  name: 'Scripts'
+  control: hidden
+  entities:
+    - script.ruby_wake_up_script
+    - script.stairs_morning_script
+    - script.hallway_morning_script
+    - script.lights_on_afternoon_motion
+
+group_scenes:
+  name: 'Scenes'
+  control: hidden
+  entities:
+    - scene.good_night
+    - scene.movie
+
+group_input_booleans:
+  name: 'Input Booleans'
+  control: hidden
+  entities:
+    - input_boolean.tim_phone
+    - input_boolean.alarmweekday
+
+group_auto_lights:
+  name: 'Automation - Lights'
+  control: hidden
+  entities:
+    - automation.transition_bedroom_light_for_work__ruby
+    - automation.turn_off_bedroom_light_if_tv_is_on
+    - automation.turn_off_lights_2_min_after_motion
+    - automation.turn_on_lights_before_leaving__weekday
+    - automation.turn_on_lights_in_the_afternoon__weekday
+    - automation.turn_on_lights_in_the_morning__weekday
+    - automation.turn_on_lights_in_the_morning__weekend
+
+group_auto_notifications:
+  name: 'Automation - Notifications'
+  control: hidden
+  entities:
+    - automation.take_meter_reading_notification
+    - automation.ssl_expiry_notification
+    - automation.notification_of_available_ha_update
+
+group_auto_alarms:
+  name: 'Automation - Alarms'
+  control: hidden
+  entities:
+    - automation.motion_detection_alarm
+ 
+group_auto_location:
+  name: 'Automation - Location'
+  control: hidden
+  entities:
+    - automation.automate__tim_away
+    - automation.automate__tim_home
+
+group_auto_generic:
+  name: 'Automation - Generic'
+  control: hidden
+  entities:
+    - automation.change_input_when_ps4_is_turned_off
+    - automation.change_input_when_ps4_is_turned_on
+
+#################################################
+################# Frontend Tabs #################
+#################################################
+
+default_view:
+   view: yes
+   icon: mdi:home
+   entities:
+     - group.group_workalarmclock
+     - group.group_hue_mqtt
+     - device_tracker.tim_phone
+
+tab_system_info:
+  view: yes
+  name: System Info
+  entities:
+    - group.group_system_monitor
+    - group.group_speedtest
+
+tab_living_room:
+  view: yes
+  name: Living room
+  entities:
+    - light.hue_living_room_color_lamp
+    - media_player.kodi
+    - media_player.sony_tv
+    - media_player.playstation_ps4
+
+tab_lights:
+  view: yes
+  name: Lights
+  entities:
+    - light.downstairs_lights
+    - light.upstairs_lights
+    - light.entrance
+    - light.bedroom
+    - light.stairs
+    - light.lamp
+
+tab_automations:
+  view: yes
+  name: Automations
+  entities:
+    - group.group_auto_lights
+    - group.group_auto_notifications
+    - group.group_auto_alarms
+    - group.group_auto_location
+    - group.group_auto_generic
+    - group.group_scenes
+    - group.group_input_booleans
+    - group.group_scripts

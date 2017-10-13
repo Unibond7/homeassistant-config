@@ -1,0 +1,10 @@
+#- platform: nmap_tracker
+#  hosts: 
+#    - 192.168.1.230-235
+#  exclude: 192.168.1.173
+#  track_new_devices: yes
+#  scan_options: " --host-timeout 20s "
+
+- platform: owntracks
+  track_new_devices: no
+  consider_home: 0.03

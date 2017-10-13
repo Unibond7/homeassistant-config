@@ -1,0 +1,10 @@
+known_devices.yaml
+secrets.yaml
+*.conf
+*.json
+*.db*
+.uuid
+*DS_Store
+.HA_VERSION
+custom_components/
+home-assistant.log

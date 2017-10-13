@@ -1,0 +1,105 @@
+# Weather sensor that original came with HomeAssistant
+- platform: yr
+
+# Amount of days left on LetsEncrypt certificate
+- platform: command_line
+  name: SSL cert expiry
+  unit_of_measurement: days
+  scan_interval: 10800
+  command: "sudo ssl-cert-check -b -c /home/pi/dehydrated/certs/timshomeassistant.duckdns.org/cert.pem | awk '{ print $NF }'"
+
+- platform: command_line
+  name: CPU Temperature
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ value | multiply(0.001) | round(1) }}'
+
+- platform: command_line
+  name: HASS Current Version
+  command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
+  scan_interval: 14400
+
+- platform: command_line
+  name: HASS Installed version
+  command: "head -5 /home/homeassistant/.homeassistant/.HA_VERSION"
+  scan_interval: 14400
+
+- platform: speedtest
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+  server_id: 6151
+
+#- platform: hue_sensors
+
+- platform: mqtt
+  state_topic: 'hue/hue_temperature_sensor_1/temperature'
+  name: 'Hall Temperature'
+  unit_of_measurement: '°C'
+  value_template: '{{ ( value_json |  float / 100 ) | round(1) }}'
+
+- platform: mqtt
+  state_topic: 'hue/hue_ambient_light_sensor_1/lightlevel'
+  name: 'Hall Light Level'
+  unit_of_measurement: 'Lux'
+  value_template: '{{ value_json }}'
+
+- platform: template
+  sensors:
+   ruby_work_alarm_time:
+      friendly_name: 'Alarm Time'
+      value_template: '{{ "%0.02d:%0.02d" | format(states("input_slider.rubyworkalarmhour") | int, states("input_slider.rubyworkalarmminutes") | int) }}'
+   ruby_transition_time_alarm:
+      friendly_name: 'Calc transition time'
+      value_template: '{{ (states.input_slider.rubyworkalarmtransition.state | float * 60) }}'
+
+#    time_to_leave_unix:
+#      friendly_name: 'Time to Leave - Unix'
+#      value_template: '{{ states("input_slider.workalarmhour") | int * 3600 + ((states("input_slider.workalarmminutes") | int * 60) - (states("sensor.work_commute") | int * 60)) }}'
+#    time_to_leave_hour:
+#      friendly_name: 'Time to Leave From Unix - Hour'
+#      value_template: '{{ "%0.02d" | format(states("sensor.time_to_leave_unix") | int // 3600) }}'
+#    time_to_leave_min:
+#      friendly_name: 'Time to Leave From Unix - Mins'
+#      value_template: '{{ "%0.02d" | format(((states("sensor.time_to_leave_unix") | int / 3600) - (states("sensor.time_to_leave_unix") | int // 3600)) * 60) }}'
+#    time_to_leave:
+#      friendly_name: 'Time to Leave'
+#      value_template: '{{ "%0.02d:%0.02d" | format(states("sensor.time_to_leave_hour") | int, states("sensor.time_to_leave_min") | int) }}'
+
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date_time'
+
+- platform: template
+  sensors:
+    hall_motion_sensor_last_update:
+      friendly_name: Last Update of Hall Motion Sensor 
+      value_template: '{% if states.binary_sensor.hall_motion_sensor_mqtt.last_updated is undefined %}{{"00:00:00"}}{% else %}{{ ((as_timestamp(states.sensor.date__time.last_updated)-as_timestamp(states.binary_sensor.hall_motion_sensor_mqtt.last_updated)) | int) }}{% endif %}'
+      unit_of_measurement: 's'
+      entity_id:
+        - sensor.date__time
+
+- platform: systemmonitor
+  resources:
+    - type: disk_use_percent
+      arg: /
+    - type: memory_use_percent
+    - type: processor_use
+
+### Shows the time to get to work - Uses Google travel API ###
+# - platform: google_travel_time
+#   name: Work Commute
+#   api_key: !secret google-travel-api
+#   origin: zone.home
+#   destination: zone.work
+#   options:
+#     mode: driving
+#     traffic_model: pessimistic
+
+# - platform: london_underground
+#   line:
+#     - Victoria
+#     - Northern
+

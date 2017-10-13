@@ -1,0 +1,12 @@
+- platform: braviatv
+  host: 192.168.1.156
+  name: Sony TV
+
+- platform: kodi
+  host: 192.168.1.156
+  name: Kodi
+
+- platform: ps4
+  host: 192.168.1.145
+  cmd: 'sudo ps4-waker'
+  name: Playstation PS4

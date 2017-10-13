@@ -1,0 +1,377 @@
+#################################################################
+#       SSL Expiry Notification - Less than 21 days left        #
+#################################################################
+- id: ssl_exp_not
+  alias: 'SSL expiry notification'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.ssl_cert_expiry
+    below: '21'
+  action:
+  - service: notify.html5_tims_s7
+    data:
+      title: 'HA - WARNING!!!'
+      message: 'Warning - SSL certificate expires in 21 days and has not been automatically renewed'
+
+#################################################################
+#   Send notification to takle Gas and Electric meter reading   #
+#################################################################
+- id: meter_read_notify
+  alias: 'Take Meter Reading Notification'
+  trigger:
+  - platform: state
+    entity_id: input_boolean.tim_phone
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+      - condition: time
+        after: '09:00:00'
+        before: '22:00:00'
+  action:
+  - service: notify.html5_tims_s7
+    data:
+      title: 'Take Meter Reading'
+      message: 'Reminder to take Gas and Electric meter reading for Bulb account'
+
+#################################################################
+#             Change Input Boolean to Tim is Away               #
+#################################################################
+- id: tim_is_away
+  alias: 'Automate - Tim Away'
+  trigger:
+  - platform: template
+    value_template: >
+        {% if not is_state('device_tracker.tim_phone', 'home') %}
+        true
+        {% endif %}
+  condition:
+  - condition: state
+    entity_id: input_boolean.tim_phone
+    state: 'on'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: input_boolean.tim_phone
+
+#################################################################
+#             Change Input Boolean to Tim is Home               #
+#################################################################
+- id: tim_is_home
+  alias: 'Automate - Tim Home'
+  trigger:
+  - platform: template
+    value_template: >
+        {% if is_state('device_tracker.tim_phone', 'home') %}
+        true
+        {% endif %}
+  condition:
+  - condition: state
+    entity_id: input_boolean.tim_phone
+    state: 'off'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: input_boolean.tim_phone
+
+#####################################################################
+#           Change input to HDMI1 when PS4 is turned on             #
+#####################################################################
+- id: input_chg_for_ps4
+  alias: 'Change input when PS4 is turned ON'
+  trigger:
+  - platform: state
+    entity_id: media_player.playstation_ps4
+    from: 'idle'
+  - platform: state
+    entity_id: media_player.playstation_ps4
+    from: 'off'
+  action:
+  - service: media_player.turn_on
+    entity_id: media_player.sony_tv
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.sony_tv
+      source: 'HDMI 1'
+
+###################################################################
+#           Change input to TV when PS4 is turned off             #
+#   ---> Look at improving to change back to previous channel     #
+###################################################################
+- id: input_chg_for_tv_from_ps4
+  alias: 'Change input when PS4 is turned OFF'
+  trigger:
+  - platform: state
+    entity_id: media_player.playstation_ps4
+    to: 'idle'
+  - platform: state
+    entity_id: media_player.playstation_ps4
+    to: 'off'
+  action:
+  - service: media_player.select_source
+    data:
+      entity_id: media_player.sony_tv
+      source: 'BBC ONE HD'
+
+#################################################################
+#             Notification of Available HA Update               #
+#################################################################
+- id: HA_update_available
+  alias: 'Notification of Available HA Update'
+  trigger:
+  - platform: state
+    entity_id: sensor.hass_current_version
+  action:
+  - service: notify.html5_tims_s7
+    data:
+      title: 'New HA Release'
+      message: 'Home Assiatnt {{ states.sensor.hass_current_version.state }} is now available'
+
+#################################################################
+#                   Motion Detected Alarm                       #
+#################################################################
+- id: motion_detected
+  alias: 'Motion detection alarm'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.hall_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.tim_phone
+        state: 'off'
+      - condition: numeric_state
+        entity_id: sensor.hall_motion_sensor_last_update
+        above: '600'
+  action:
+  - service: notify.html5_tims_s7
+    data:
+      title: 'Motion has been Detected!!!'
+      message: 'Someone is home and has triggered the  Motion Sensor'
+
+#################################################################
+#           Turn on the stairs in the morning - Weekday         #
+#################################################################
+- id: lights_on_with_motion_morning_weekday
+  alias: 'Turn on lights in the morning - Weekday'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.hall_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '00:00:00'
+        before: '05:30:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: state
+        entity_id: input_boolean.tim_phone
+        state: 'on'
+      - condition: state
+        entity_id: light.osram_stairs_candle
+        state: 'off'
+      - condition: numeric_state
+        entity_id: sensor.hall_light_level
+        below: '4000'
+  action:
+  - service: script.turn_on
+    entity_id: script.stairs_morning_script
+
+#################################################################
+#           Turn on the hall in the morning - Weekday           #
+#################################################################
+- id: lights_on_with_motion_morning_leaving_weekday
+  alias: 'Turn on lights before leaving - Weekday'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.hall_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+        after: '05:30:00'
+        before: '12:00:00'
+      - condition: numeric_state
+        entity_id: sensor.hall_light_level
+        below: '4000'
+      - condition: state
+        entity_id: light.osram_hallway_candle
+        state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.hallway_morning_script
+
+#################################################################
+#           Turn on the stairs in the morning - Weekend         #
+#################################################################
+- id: lights_on_with_motion_morning_weekend
+  alias: 'Turn on lights in the morning - Weekend'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.hall_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+          - sat
+          - sun
+        after: '00:00:00'
+        before: '12:00:00'
+      - condition: numeric_state
+        entity_id: sensor.hall_light_level
+        below: '4000'
+      - condition: state
+        entity_id: light.osram_hallway_candle
+        state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.stairs_morning_script
+
+################################################################################
+#          Turn on the lights in the afternoon with motion detection           #
+################################################################################
+- id: lights_on_with_motion_afternoon_weekday
+  alias: 'Turn on lights in the afternoon - Weekday'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.hall_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '12:00:00'
+        before: '00:00:00'
+      - condition: numeric_state
+        entity_id: sensor.hall_light_level
+        below: '4000'
+      - condition: state
+        entity_id: light.osram_stairs_candle
+        state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.lights_on_afternoon_motion
+
+#################################################################
+#       Turn off the lights with no motion after 2 min          #
+#################################################################
+- id: lights_off_lights_after_motion
+  alias: 'Turn off lights 2 min after motion'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.hall_motion_sensor_last_update
+    above: '120'
+  action:
+  - service: light.turn_off
+    data:
+      entity_id:
+        - light.osram_hallway_candle
+        - light.osram_stairs_candle
+
+#################################################################
+#          Turn off bedroom light if TV is  on                  #
+#################################################################
+- id: bedlight_off_with_tv
+  alias: 'Turn off bedroom light if TV is on'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.hall_motion_sensor_last_update
+    above: '120'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '12:00:00'
+        before: '00:00:00'
+      - condition: state
+        entity_id: media_player.sony_tv
+        state: 'on'
+  action:
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.hue_bedroom_ambiance
+
+#################################################################
+#            Transition bedroom light for work - Ruby           #
+#################################################################
+- id: morning_light_transition
+  alias: 'Transition bedroom light for work - Ruby'
+  trigger:
+  - platform: template
+    value_template: '{{ states.sensor.time.state == states.sensor.ruby_work_alarm_time.state }}'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.rubyworkalarmstatus
+        state: 'on'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+  - service: script.turn_on
+    entity_id: script.ruby_wake_up_script
+
+#####################################################################################
+#####################################################################################
+######### Set Logger Default level - Good for debugging ######
+#- id: set_logger_default_level
+#  alias: Log Level
+#  trigger:
+#    platform: state
+#    entity_id: input_select.log_level
+#  action:
+#    service: logger.set_level
+#    data_template:
+#      homeassistant.components: "{{ trigger.to_state.state }}"
+#####################################################################################
+# - id: morning_commute_alarm
+#   alias: "Morning Commute Alarm"
+#   initial_state: 'on'
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: time
+#         weekday:
+#           - mon
+#           - tue
+#           - wed
+#           - thu
+#           - fri
+#       - condition: state
+#         entity_id: input_boolean.tim_phone
+#         state: 'on'
+#       - condition: state
+#         entity_id: input_boolean.workalarmstatus
+#         state: 'on'
+#   trigger:
+#   - platform: template
+#     value_template: '{{ states.sensor.time.state == states.sensor.time_to_leave.state }}'
+#   action:
+#   - service: notify.html5_tims_s7
+#     data:
+#       title: 'Leave for Work'
+#       message: "Leave now to arrive by {{ states('sensor.work_alarm_time') }}"
