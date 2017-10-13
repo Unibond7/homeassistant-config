@@ -15,11 +15,11 @@ HA Version: 0.54.0
 
 ## Hardware
 * Lights
-  * [Philips Hue White ambiance]()
-  * [Philips Hue White and colour ambiance](https://goo.gl/QCu6Az) - both using [Hue Bridge]()
+  * [Philips Hue White ambiance](https://goo.gl/xQEkrF)
+  * [Philips Hue White and colour ambiance](https://goo.gl/QCu6Az) - both using [Hue Bridge](https://goo.gl/8crECi)
   * [Osram candle lights (x2)](https://goo.gl/kBqa5r)
 * Sensors
-  * [Philips Hue Motion Sensor](https://goo.gl/WiubkD)
+  * [Philips Hue Motion Sensor](https://goo.gl/bbGHD4)
   * [Amazon Echo Dot (x2)](https://goo.gl/T7A4kq)
 * Media Players
   * [Sony TV](https://goo.gl/C2V2Rr)
