@@ -29,7 +29,7 @@
     - ping
     - download
     - upload
-  server_id: 6151
+      #  server_id: 6151
 
 #- platform: hue_sensors
 

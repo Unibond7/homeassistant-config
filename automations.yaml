@@ -239,7 +239,7 @@
         entity_id: sensor.hall_light_level
         below: '4000'
       - condition: state
-        entity_id: light.osram_hallway_candle
+        entity_id: light.osram_stairs_candle
         state: 'off'
   action:
   - service: script.turn_on
