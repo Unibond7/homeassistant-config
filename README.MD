@@ -28,7 +28,7 @@ HA Version: 0.54.0
 
 ### To Buy
 * Sensors - Consider getting Z-Wave USB stick and use Z-Wave sensors
-  * Door Sensor
+  * Door Sensor (with motion sensor preferably)
   * Motion Sensor (x2)
 * Switches
   * [TP-Link HS100 Smart Switch](https://goo.gl/WL54Ae)
@@ -61,9 +61,27 @@ I use an Automation which sets a Boolean to 'Home' or 'Away' according to the pr
   * Change TV input if the PS4 is On or OFF
 
 ## ToDo
+* Lighting
+  * With added motion sensors turn on/off lights according to which motion sensor has been activated
+* Automations
+  * Use Input Booleans/Scripts as much as possible - this means that when I change a bulb/method of detection/etc I don't need to change the automation
+  * Add bayesian binary sensor to be able to improve automations - (similar to if TV is off and after 21:00 probability of being in bed is high)
+  * Change lamp colour depending on train status - Look at [Set Lamp colour depending on train status](https://goo.gl/hdmLe8)
+  * Look at [CCOSTAN config](https://goo.gl/jxdfkm) for inspiration
+* Sensors
+  * Look at reducing the number of scan intervals needed for each sensor
+  * Add transport from Euston to Birmingham International and vice versa
+  * Add Battery status of motion sensor by creating a [RESTful sensor](https://goo.gl/cmipSo)
+* Alarm
+  * Add MQTT alarm with IR and camera using Pi Zero W, Touch Screen, Pi Camera and 3D printed case
+  * Add scripts/automations to take still photos and send to phone as email/notifications
+* Customize HA
+  * Change icon colours when state changes
+  * Look at implementing floorplan
+* Voice Integration
+  * Add AWS Polly Voice service for Echo Dots - [Reference](https://goo.gl/QaVZWA)
 * Look at implementing AWS RDS to log history (mainly as a learning exercise) 
 
 ## Lessons Learnt
-* Use Input Booleans/Scripts as much as possible - this means that when I change a bulb/method of detection/etc I don't need to change the automation
 * As much as I love the Philips Hue Bulbs/Motion Sensor and app, should have gone with the Z-wave option as the Hue Zigbee protocol seems to be too restrictive
 
