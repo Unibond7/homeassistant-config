@@ -25,6 +25,7 @@
   scan_interval: 14400
 
 - platform: speedtest
+  server_id: 8066
   hour:
     - 4
     - 15
