@@ -5,7 +5,7 @@ tim_phone:
 
 rubyworkalarmstatus:
   name: Alarm Status
-  initial: off
+  initial: on
   icon: mdi:alarm-check
 
 alarmweekday:
