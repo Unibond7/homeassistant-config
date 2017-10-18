@@ -1,5 +1,5 @@
 # Weather sensor that original came with HomeAssistant
-- platform: yr
+#- platform: yr
 
 # Amount of days left on LetsEncrypt certificate
 - platform: command_line
