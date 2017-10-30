@@ -335,6 +335,34 @@
   - service: script.turn_on
     entity_id: script.ruby_wake_up_script
 
+#################################################################
+#             Turn off lights after 8:30am - Weekday            #
+#################################################################
+- id: morning_lights_off
+  alias: 'Turn off lights after 8:30am - Weekday'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.hall_motion_sensor_last_update
+    above: '120'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.tim_phone
+        state: 'off'
+      - condition: time
+        after: '08:30:00'
+        before: '09:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+  - service: light.turn_off
+    entity_id: light.all_hue_lights
+
 #####################################################################################
 #####################################################################################
 ######### Set Logger Default level - Good for debugging ######

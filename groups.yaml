@@ -75,6 +75,7 @@ group_auto_lights:
     - automation.turn_on_lights_in_the_afternoon__weekday
     - automation.turn_on_lights_in_the_morning__weekday
     - automation.turn_on_lights_in_the_morning__weekend
+    - automation.turn_off_lights_after_830am__weekday
 
 group_auto_notifications:
   name: 'Automation - Notifications'
