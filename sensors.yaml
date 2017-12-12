@@ -47,6 +47,7 @@
   name: 'Hall Light Level'
   unit_of_measurement: 'Lux'
   value_template: '{{ value_json }}'
+#  value_template: '{{ float(10**((value_json-1)/10000)) | round(2) }}'
 
 - platform: template
   sensors:
