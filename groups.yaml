@@ -51,10 +51,10 @@ group_scripts:
   name: 'Scripts'
   control: hidden
   entities:
-    - script.ruby_wake_up_script
-    - script.stairs_morning_script
+    - script.wakeup_bedroom
     - script.hallway_morning_script
-    - script.lights_on_afternoon_motion
+    - script.hall_lights_on_full
+    - script.hall_lights_on_half
 
 group_scenes:
   name: 'Scenes'

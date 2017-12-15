@@ -184,7 +184,7 @@
         below: '10000'
   action:
   - service: script.turn_on
-    entity_id: script.stairs_morning_script
+    entity_id: script.hall_lights_on_half
 
 #################################################################
 #           Turn on the hall in the morning - Weekday           #
@@ -243,7 +243,7 @@
         state: 'off'
   action:
   - service: script.turn_on
-    entity_id: script.stairs_morning_script
+    entity_id: script.hall_lights_on_half
 
 ################################################################################
 #          Turn on the lights in the afternoon with motion detection           #
@@ -333,7 +333,7 @@
           - fri
   action:
   - service: script.turn_on
-    entity_id: script.ruby_wake_up_script
+    entity_id: script.wakeup_bedroom
 
 #################################################################
 #             Turn off lights after 8:30am - Weekday            #

@@ -1,5 +1,5 @@
-ruby_wake_up_script:
-  alias: Wake Up Ruby
+wakeup_bedroom:
+  alias: 'Wakeup lighting, smooth transition'
   sequence:
     - alias: Bedroom Light On
       service: light.turn_on
@@ -16,22 +16,22 @@ ruby_wake_up_script:
 #        transition: '{{ states.sensor.ruby_transition_time_alarm.state | float }}'
         color_temp: "400"
 
-stairs_morning_script:
-  alias: Turn stairs on in the morning
-  sequence:
-    - alias: Stairs Light On
-      service: light.turn_on
-      data:
-        entity_id: light.osram_stairs_candle
-        brightness_pct: "1"
-        color_temp: "400"
-    - alias: Stairs Light Transition
-      service: light.turn_on
-      data:
-        entity_id: light.osram_stairs_candle
-        brightness_pct: "55"
-        color_temp: "400"
-        transition: "2"
+        #stairs_morning_script:
+        #  alias: Turn stairs on in the morning
+        #  sequence:
+        #    - alias: Stairs Light On
+        #      service: light.turn_on
+        #      data:
+        #        entity_id: light.osram_stairs_candle
+        #        brightness_pct: "1"
+        #        color_temp: "400"
+        #    - alias: Stairs Light Transition
+        #      service: light.turn_on
+        #      data:
+        #        entity_id: light.osram_stairs_candle
+        #        brightness_pct: "55"
+        #        color_temp: "400"
+        #        transition: "2"
 
 hallway_morning_script:
   alias: Turn stairs off and hallway on in the morning
