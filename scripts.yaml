@@ -16,45 +16,6 @@ wakeup_bedroom:
 #        transition: '{{ states.sensor.ruby_transition_time_alarm.state | float }}'
         color_temp: "400"
 
-        #stairs_morning_script:
-        #  alias: Turn stairs on in the morning
-        #  sequence:
-        #    - alias: Stairs Light On
-        #      service: light.turn_on
-        #      data:
-        #        entity_id: light.osram_stairs_candle
-        #        brightness_pct: "1"
-        #        color_temp: "400"
-        #    - alias: Stairs Light Transition
-        #      service: light.turn_on
-        #      data:
-        #        entity_id: light.osram_stairs_candle
-        #        brightness_pct: "55"
-        #        color_temp: "400"
-        #        transition: "2"
-
-hallway_morning_script:
-  alias: Turn stairs off and hallway on in the morning
-  sequence:
-    - alias: Stairs Light Off
-      service: light.turn_off
-      data:
-        entity_id: light.osram_stairs_candle
-        transition: "2"
-    - alias: Hallway Light On
-      service: light.turn_on
-      data:
-        entity_id: light.osram_hallway_candle
-        brightness_pct: "1"
-        color_temp: "400"
-    - alias: Hallway Light Transition
-      service: light.turn_on
-      data:
-        entity_id: light.osram_hallway_candle
-        brightness_pct: "55"
-        color_temp: "400"
-        transition: "2"
-
 hall_lights_on_full:
   alias: "Turn on hall lights to 100% brightness"
   sequence:
@@ -96,3 +57,54 @@ hall_lights_on_half:
         brightness_pct: "50"
         color_temp: "325"
         transition: "2"
+
+bedroom_light_full:
+  alias: "Turn on Bedroom lamp to 100% brightness"
+  sequence:
+    - alias: Turn on Bedroom Lamp
+      service: light.turn_on
+      data:
+        entity_id: 
+          - light.hue_bedroom_ambiance
+        brightness_pct: "100"
+        color_temp: "325"
+
+        #stairs_morning_script:
+        #  alias: Turn stairs on in the morning
+        #  sequence:
+        #    - alias: Stairs Light On
+        #      service: light.turn_on
+        #      data:
+        #        entity_id: light.osram_stairs_candle
+        #        brightness_pct: "1"
+        #        color_temp: "400"
+        #    - alias: Stairs Light Transition
+        #      service: light.turn_on
+        #      data:
+        #        entity_id: light.osram_stairs_candle
+        #        brightness_pct: "55"
+        #        color_temp: "400"
+        #        transition: "2"
+
+        #hallway_morning_script:
+        #  alias: Turn stairs off and hallway on in the morning
+        #  sequence:
+        #    - alias: Stairs Light Off
+        #      service: light.turn_off
+        #      data:
+        #        entity_id: light.osram_stairs_candle
+        #        transition: "2"
+        #    - alias: Hallway Light On
+        #      service: light.turn_on
+        #      data:
+        #        entity_id: light.osram_hallway_candle
+        #        brightness_pct: "1"
+        #        color_temp: "400"
+        #    - alias: Hallway Light Transition
+        #      service: light.turn_on
+        #      data:
+        #        entity_id: light.osram_hallway_candle
+        #        brightness_pct: "55"
+        #        color_temp: "400"
+        #        transition: "2"
+

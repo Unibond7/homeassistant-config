@@ -152,11 +152,11 @@
       title: 'Motion has been Detected!!!'
       message: 'Someone is home and has triggered the  Motion Sensor'
 
-#################################################################
-#           Turn on the stairs in the morning - Weekday         #
-#################################################################
-- id: lights_on_with_motion_morning_weekday
-  alias: 'Turn on lights in the morning - Weekday'
+###########################################################################
+#   Turn on the hall lights to half brightness - Weekday Morning/Nights   #
+###########################################################################
+- id: hall_lights_half_with_motion_weekday_morning_night
+  alias: 'Turn on the hall lights to half brightness - Weekday Morning/Night'
   trigger:
   - platform: state
     entity_id: binary_sensor.hall_motion_sensor_mqtt
@@ -165,63 +165,26 @@
     condition: and
     conditions:
       - condition: time
-        after: '00:00:00'
-        before: '05:30:00'
+        after: '21:00:00'
+        before: '07:30:00'
         weekday:
           - mon
           - tue
           - wed
           - thu
           - fri
-      - condition: state
-        entity_id: input_boolean.tim_phone
-        state: 'on'
-      - condition: state
-        entity_id: light.osram_stairs_candle
-        state: 'off'
       - condition: numeric_state
         entity_id: sensor.hall_light_level
-        below: '10000'
+        below: '5000'
   action:
   - service: script.turn_on
     entity_id: script.hall_lights_on_half
 
-#################################################################
-#           Turn on the hall in the morning - Weekday           #
-#################################################################
-- id: lights_on_with_motion_morning_leaving_weekday
-  alias: 'Turn on lights before leaving - Weekday'
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.hall_motion_sensor_mqtt
-    to: 'on'
-  condition:
-    condition: and
-    conditions:
-      - condition: time
-        weekday:
-          - mon
-          - tue
-          - wed
-          - thu
-          - fri
-        after: '05:30:00'
-        before: '12:00:00'
-      - condition: numeric_state
-        entity_id: sensor.hall_light_level
-        below: '10000'
-      - condition: state
-        entity_id: light.osram_hallway_candle
-        state: 'off'
-  action:
-  - service: script.turn_on
-    entity_id: script.hall_lights_on_half
-
-#################################################################
-#           Turn on the stairs in the morning - Weekend         #
-#################################################################
-- id: lights_on_with_motion_morning_weekend
-  alias: 'Turn on lights in the morning - Weekend'
+###########################################################################
+#   Turn on the hall lights to half brightness - Weekend Morning/Nights   #
+###########################################################################
+- id: hall_lights_half_with_motion_weekend_morning_night
+  alias: 'Turn on the hall lights to half brightness - Weekend Morning/Night'
   trigger:
   - platform: state
     entity_id: binary_sensor.hall_motion_sensor_mqtt
@@ -233,23 +196,20 @@
         weekday:
           - sat
           - sun
-        after: '00:00:00'
+        after: '21:00:00'
         before: '12:00:00'
       - condition: numeric_state
         entity_id: sensor.hall_light_level
-        below: '10000'
-      - condition: state
-        entity_id: light.osram_stairs_candle
-        state: 'off'
+        below: '5000'
   action:
   - service: script.turn_on
     entity_id: script.hall_lights_on_half
 
-################################################################################
-#          Turn on the lights in the afternoon with motion detection           #
-################################################################################
-- id: lights_on_with_motion_afternoon_weekday
-  alias: 'Turn on lights in the afternoon - Weekday'
+#############################################################
+#   Turn on the hall lights to full brightness - Weekdays   #
+#############################################################
+- id: hall_lights_full_with_motion_weekdays
+  alias: 'Turn on the hall lights to full brightness - Weekdays'
   trigger:
   - platform: state
     entity_id: binary_sensor.hall_motion_sensor_mqtt
@@ -258,17 +218,36 @@
     condition: and
     conditions:
       - condition: time
-        after: '12:00:00'
-        before: '00:00:00'
+        after: '07:30:00'
+        before: '21:00:00'
       - condition: numeric_state
         entity_id: sensor.hall_light_level
         below: '10000'
-      - condition: state
-        entity_id: light.osram_stairs_candle
-        state: 'off'
   action:
   - service: script.turn_on
     entity_id: script.hall_lights_on_full
+
+########################################
+#   Turn on bedroom light - Weekdays   #
+########################################
+- id: bedroom_light_with_motion_weekdays
+  alias: 'Turn on the bedroom light to full brightness - Weekdays'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.bedroom_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '07:30:00'
+        before: '21:00:00'
+      - condition: numeric_state
+        entity_id: sensor.bedroom_light_level
+        below: '10000'
+  action:
+  - service: script.turn_on
+    entity_id: script.bedroom_light_full
 
 #################################################################
 #       Turn off the lights with no motion after 2 min          #

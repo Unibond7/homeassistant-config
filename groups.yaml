@@ -52,9 +52,9 @@ group_scripts:
   control: hidden
   entities:
     - script.wakeup_bedroom
-    - script.hallway_morning_script
     - script.hall_lights_on_full
     - script.hall_lights_on_half
+    - script.bedroom_light_full
 
 group_scenes:
   name: 'Scenes'
@@ -77,11 +77,11 @@ group_auto_lights:
     - automation.transition_bedroom_light_for_work__ruby
     - automation.turn_off_bedroom_light_if_tv_is_on
     - automation.turn_off_lights_2_min_after_motion
-    - automation.turn_on_lights_before_leaving__weekday
-    - automation.turn_on_lights_in_the_afternoon__weekday
-    - automation.turn_on_lights_in_the_morning__weekday
-    - automation.turn_on_lights_in_the_morning__weekend
     - automation.turn_off_lights_after_830am__weekday
+    - automation.turn_on_the_bedroom_light_full_brightness__weekdays
+    - automation.turn_on_the_hall_lights_to_full_brightness__weekdays
+    - automation.turn_on_the_hall_lights_to_half_brightness__weekday_morningnight
+    - automation.turn_on_the_hall_lights_to_half_brightness__weekend_morningnight
 
 group_auto_notifications:
   name: 'Automation - Notifications'
@@ -96,7 +96,7 @@ group_auto_alarms:
   control: hidden
   entities:
     - automation.motion_detection_alarm
- 
+
 group_auto_location:
   name: 'Automation - Location'
   control: hidden
