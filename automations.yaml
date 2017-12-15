@@ -193,11 +193,11 @@
     condition: and
     conditions:
       - condition: time
+        after: '21:00:00'
+        before: '12:00:00'
         weekday:
           - sat
           - sun
-        after: '21:00:00'
-        before: '12:00:00'
       - condition: numeric_state
         entity_id: sensor.hall_light_level
         below: '5000'
@@ -220,6 +220,37 @@
       - condition: time
         after: '07:30:00'
         before: '21:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: numeric_state
+        entity_id: sensor.hall_light_level
+        below: '10000'
+  action:
+  - service: script.turn_on
+    entity_id: script.hall_lights_on_full
+
+#############################################################
+#   Turn on the hall lights to full brightness - Weekends   #
+#############################################################
+- id: hall_lights_full_with_motion_weekends
+  alias: 'Turn on the hall lights to full brightness - Weekends'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.hall_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '12:00:00'
+        before: '21:00:00'
+        weekday:
+          - sat
+          - sun
       - condition: numeric_state
         entity_id: sensor.hall_light_level
         below: '10000'
@@ -248,6 +279,31 @@
   action:
   - service: script.turn_on
     entity_id: script.bedroom_light_full
+
+########################################
+#      Turn on living room light       #
+########################################
+- id: living_room_light_on_with_motion
+  alias: 'Turn on the living room light'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.living_room_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '07:30:00'
+        before: '21:00:00'
+      - condition: numeric_state
+        entity_id: sensor.bedroom_light_level
+        below: '10000'
+      - condition: state
+        entity_id: light.lamp
+        state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.lamp_light_full
 
 #################################################################
 #       Turn off the lights with no motion after 2 min          #

@@ -69,6 +69,18 @@ bedroom_light_full:
         brightness_pct: "100"
         color_temp: "325"
 
+lamp_light_full:
+  alias: "Turn on Living Room lamp to 100% brightness"
+  sequence:
+    - alias: Turn on Living Room Lamp
+      service: light.turn_on
+      data:
+        entity_id: 
+          - light.lamp
+        brightness_pct: "100"
+        color_temp: "343"
+        xy_color: [0.4452, 0.4068]
+
         #stairs_morning_script:
         #  alias: Turn stairs on in the morning
         #  sequence:
