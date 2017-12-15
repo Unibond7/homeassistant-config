@@ -268,7 +268,7 @@
         state: 'off'
   action:
   - service: script.turn_on
-    entity_id: script.lights_on_afternoon_motion
+    entity_id: script.hall_lights_on_full
 
 #################################################################
 #       Turn off the lights with no motion after 2 min          #

@@ -55,7 +55,7 @@ hallway_morning_script:
         color_temp: "400"
         transition: "2"
 
-lights_on_afternoon_motion:
+hall_lights_on_full:
   alias: "Turn on lights with motion in the afternoon/evening"
   sequence:
     - alias: Turn on Lights Afteroon
@@ -63,7 +63,7 @@ lights_on_afternoon_motion:
       data:
         entity_id: 
           - light.osram_hallway_candle
-          - light.hue_bedroom_ambiance
+          - light.osram_stairs_candle
         brightness_pct: "1"
         color_temp: "325"
     - alias: Transition Lights Afternoon
@@ -71,8 +71,8 @@ lights_on_afternoon_motion:
       data:
         entity_id:
           - light.osram_hallway_candle
-          - light.hue_bedroom_ambiance
-        brightness_pct: "80"
+          - light.osram_stairs_candle
+        brightness_pct: "100"
         color_temp: "325"
-        transition: "1"
+        transition: "2"
 
