@@ -49,6 +49,32 @@
   value_template: '{{ value_json }}'
 #  value_template: '{{ float(10**((value_json-1)/10000)) | round(2) }}'
 
+- platform: mqtt
+  state_topic: 'hue/hue_temperature_sensor_2/temperature'
+  name: 'Bedroom Temperature'
+  unit_of_measurement: '°C'
+  value_template: '{{ ( value_json |  float / 100 ) | round(1) }}'
+
+- platform: mqtt
+  state_topic: 'hue/hue_ambient_light_sensor_2/lightlevel'
+  name: 'Bedroom Light Level'
+  unit_of_measurement: 'Lux'
+  value_template: '{{ value_json }}'
+#  value_template: '{{ float(10**((value_json-1)/10000)) | round(2) }}'
+
+- platform: mqtt
+  state_topic: 'hue/hue_temperature_sensor_3/temperature'
+  name: 'Living Room Temperature'
+  unit_of_measurement: '°C'
+  value_template: '{{ ( value_json |  float / 100 ) | round(1) }}'
+
+- platform: mqtt
+  state_topic: 'hue/hue_ambient_light_sensor_3/lightlevel'
+  name: 'Living Room Light Level'
+  unit_of_measurement: 'Lux'
+  value_template: '{{ value_json }}'
+#  value_template: '{{ float(10**((value_json-1)/10000)) | round(2) }}'
+
 - platform: template
   sensors:
    ruby_work_alarm_time:

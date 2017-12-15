@@ -8,3 +8,17 @@
   name: 'Hall Motion Sensor (MQTT)'
   payload_on: "true"
   payload_off: "false"
+
+- platform: mqtt
+  device_class: motion
+  state_topic: hue/hue_motion_sensor_2/presence
+  name: 'Bedroom Motion Sensor (MQTT)'
+  payload_on: "true"
+  payload_off: "false"
+
+- platform: mqtt
+  device_class: motion
+  state_topic: hue/hue_motion_sensor_3/presence
+  name: 'Living Room Motion Sensor (MQTT)'
+  payload_on: "true"
+  payload_off: "false"
