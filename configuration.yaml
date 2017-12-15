@@ -42,6 +42,8 @@ input_slider: !include input_sliders.yaml
 light: !include lights.yaml
 # Scripts
 script: !include scripts.yaml
+# Switches
+switch: !include switches.yaml
 
 notify: !include notify.yaml
 

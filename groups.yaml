@@ -23,6 +23,12 @@ group_hue_mqtt:
     - binary_sensor.hall_motion_sensor_mqtt
     - sensor.hall_temperature
     - sensor.hall_light_level
+    - binary_sensor.bedroom_motion_sensor_mqtt
+    - sensor.bedroom_temperature
+    - sensor.bedroom_light_level
+    - binary_sensor.living_room_motion_sensor_mqtt
+    - sensor.living_room_temperature
+    - sensor.living_room_light_level
 
 #group_hue_hass_comp:
 #  name: 'Hue Accesories'
