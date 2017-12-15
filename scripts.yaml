@@ -79,7 +79,6 @@ lamp_light_full:
           - light.lamp
         brightness_pct: "100"
         color_temp: "343"
-        xy_color: [0.4452, 0.4068]
 
         #stairs_morning_script:
         #  alias: Turn stairs on in the morning

@@ -55,6 +55,7 @@ group_scripts:
     - script.hall_lights_on_full
     - script.hall_lights_on_half
     - script.bedroom_light_full
+    - script.lamp_light_full
 
 group_scenes:
   name: 'Scenes'
@@ -82,6 +83,7 @@ group_auto_lights:
     - automation.turn_on_the_hall_lights_to_full_brightness__weekdays
     - automation.turn_on_the_hall_lights_to_half_brightness__weekday_morningnight
     - automation.turn_on_the_hall_lights_to_half_brightness__weekend_morningnight
+    - automation.turn_on_the_living_room_light
 
 group_auto_notifications:
   name: 'Automation - Notifications'
