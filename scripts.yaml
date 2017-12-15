@@ -56,9 +56,9 @@ hallway_morning_script:
         transition: "2"
 
 hall_lights_on_full:
-  alias: "Turn on lights with motion in the afternoon/evening"
+  alias: "Turn on hall lights to 100% brightness"
   sequence:
-    - alias: Turn on Lights Afteroon
+    - alias: Turn on Hall Lights
       service: light.turn_on
       data:
         entity_id: 
@@ -66,7 +66,7 @@ hall_lights_on_full:
           - light.osram_stairs_candle
         brightness_pct: "1"
         color_temp: "325"
-    - alias: Transition Lights Afternoon
+    - alias: Transition Hall Lights to 100%
       service: light.turn_on
       data:
         entity_id:
@@ -76,3 +76,23 @@ hall_lights_on_full:
         color_temp: "325"
         transition: "2"
 
+hall_lights_on_half:
+  alias: "Turn on hall lights to 50% brightness"
+  sequence:
+    - alias: Turn on Hall Lights
+      service: light.turn_on
+      data:
+        entity_id: 
+          - light.osram_hallway_candle
+          - light.osram_stairs_candle
+        brightness_pct: "1"
+        color_temp: "325"
+    - alias: Transition Hall Lights to 50%
+      service: light.turn_on
+      data:
+        entity_id:
+          - light.osram_hallway_candle
+          - light.osram_stairs_candle
+        brightness_pct: "50"
+        color_temp: "325"
+        transition: "2"
