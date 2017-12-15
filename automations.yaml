@@ -181,7 +181,7 @@
         state: 'off'
       - condition: numeric_state
         entity_id: sensor.hall_light_level
-        below: '4000'
+        below: '25'
   action:
   - service: script.turn_on
     entity_id: script.stairs_morning_script
@@ -209,7 +209,7 @@
         before: '12:00:00'
       - condition: numeric_state
         entity_id: sensor.hall_light_level
-        below: '4000'
+        below: '25'
       - condition: state
         entity_id: light.osram_hallway_candle
         state: 'off'
@@ -237,7 +237,7 @@
         before: '12:00:00'
       - condition: numeric_state
         entity_id: sensor.hall_light_level
-        below: '4000'
+        below: '25'
       - condition: state
         entity_id: light.osram_stairs_candle
         state: 'off'
@@ -262,7 +262,7 @@
         before: '00:00:00'
       - condition: numeric_state
         entity_id: sensor.hall_light_level
-        below: '4000'
+        below: '25'
       - condition: state
         entity_id: light.osram_stairs_candle
         state: 'off'
