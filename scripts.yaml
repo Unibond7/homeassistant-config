@@ -66,8 +66,16 @@ bedroom_light_full:
       data:
         entity_id: 
           - light.hue_bedroom_ambiance
+        brightness_pct: "1"
+        color_temp: "325"
+    - alias: Transition Bedroom Lamp to 100%
+      service: light.turn_on
+      data:
+        entity_id:
+          - light.hue_bedroom_ambiance
         brightness_pct: "100"
         color_temp: "325"
+        transition: "1"
 
 lamp_light_full:
   alias: "Turn on Living Room lamp to 100% brightness"

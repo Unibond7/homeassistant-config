@@ -176,6 +176,9 @@
       - condition: numeric_state
         entity_id: sensor.hall_light_level
         below: '5000'
+      - condition: state
+        entity_id: light.entrance
+        state: 'off'
   action:
   - service: script.turn_on
     entity_id: script.hall_lights_on_half
@@ -253,7 +256,10 @@
           - sun
       - condition: numeric_state
         entity_id: sensor.hall_light_level
-        below: '10000'
+        below: '10000' 
+      - condition: state
+        entity_id: light.entrance
+        state: 'off'
   action:
   - service: script.turn_on
     entity_id: script.hall_lights_on_full
@@ -276,6 +282,9 @@
       - condition: numeric_state
         entity_id: sensor.bedroom_light_level
         below: '10000'
+      - condition: state
+        entity_id: light.bedroom
+        state: 'off'
   action:
   - service: script.turn_on
     entity_id: script.bedroom_light_full
@@ -318,8 +327,8 @@
   - service: light.turn_off
     data:
       entity_id:
-        - light.osram_hallway_candle
-        - light.osram_stairs_candle
+        - light.entrance
+        - light.stairs
 
 #################################################################
 #          Turn off bedroom light if TV is  on                  #
@@ -397,6 +406,8 @@
   action:
   - service: light.turn_off
     entity_id: light.all_hue_lights
+  - service: switch.turn_off
+    entity_id: switch.hs110
 
 #####################################################################################
 #####################################################################################
