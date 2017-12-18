@@ -51,13 +51,15 @@ group_scripts:
   name: 'Scripts'
   control: hidden
   entities:
-    - script.wakeup_bedroom
     - script.hall_lights_on_full
     - script.hall_lights_on_half
+    - script.hallway_off
     - script.bedroom_light_full
     - script.bedroom_light_half
-    - script.lamp_light_full
-    - script.hallway_off
+    - script.wakeup_bedroom
+    - script.bedroom_off
+    - script.living_room_full
+    - script.living_room_off
 
 group_scenes:
   name: 'Scenes'
