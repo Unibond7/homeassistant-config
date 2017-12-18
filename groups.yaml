@@ -57,6 +57,7 @@ group_scripts:
     - script.bedroom_light_full
     - script.bedroom_light_half
     - script.lamp_light_full
+    - script.hallway_off
 
 group_scenes:
   name: 'Scenes'
