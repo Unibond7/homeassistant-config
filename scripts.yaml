@@ -111,7 +111,7 @@ bedroom_off:
           - light.bedroom
 
 living_room_full:
-  alias: "Turn on Living Room lamp to 100% brightness"
+  alias: "Turn on Living Room Lights to 100% brightness"
   sequence:
     - alias: Turn on Living Room Lamp
       service: light.turn_on
@@ -120,6 +120,11 @@ living_room_full:
           - light.lamp
         brightness_pct: "100"
         color_temp: "343"
+    - alias: Turn on Christmas Tree
+      service: switch.turn_on
+      data:
+        entity_id:
+          - switch.hs100
 
 living_room_off:
   alias: "Turn off the Living room Lights"
@@ -129,4 +134,9 @@ living_room_off:
       data:
         entity_id:
           - light.lamp
+    - alias: Turn off Christmas Tree
+      service: switch.turn_off
+      data:
+        entity_id:
+          - switch.hs100
 

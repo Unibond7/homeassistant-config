@@ -16,15 +16,15 @@ group_speedtest:
     - sensor.speedtest_upload
     - sensor.speedtest_ping
 
-group_hue_mqtt_hall:
-  name: 'Hue Motion Sensor (MQTT) - Hall'
+group_hue_mqtt_hallway:
+  name: 'Hue Motion Sensor (MQTT) - Hallway'
   control: hidden
   entities:
     - binary_sensor.hall_motion_sensor_mqtt
     - sensor.hall_temperature
     - sensor.hall_light_level
 
-group_hue_mqtt_hallway:
+group_hue_mqtt_bedroom:
   name: 'Hue Motion Sensor (MQTT) - Bedroom'
   control: hidden
   entities:
@@ -131,13 +131,14 @@ group_auto_generic:
 
 group_lights:
   name: 'Lights'
+  entities:
     - light.downstairs_lights
     - light.upstairs_lights
     - light.entrance
     - light.bedroom
     - light.stairs
     - light.lamp
-    - lights.hallway_lights
+    - light.hallway_lights
 
 #################################################
 ################# Frontend Tabs #################
@@ -165,6 +166,7 @@ tab_living_room:
   name: Living room
   entities:
     - light.hue_living_room_color_lamp
+    - switch.hs100
     - media_player.kodi
     - media_player.sony_tv
     - media_player.playstation_ps4
