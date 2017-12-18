@@ -13,7 +13,7 @@ wakeup_bedroom:
         entity_id: light.hue_bedroom_ambiance
         brightness_pct: "100"
         transition: "2400"
-#        transition: '{{ states.sensor.ruby_transition_time_alarm.state | float }}'
+        #        transition: '{{ states.input_slider.rubyworkalarmtransition.state | multiply(60) | int }}'
         color_temp: "400"
 
 hall_lights_on_full:
@@ -74,6 +74,25 @@ bedroom_light_full:
         entity_id:
           - light.hue_bedroom_ambiance
         brightness_pct: "100"
+        color_temp: "325"
+        transition: "1"
+
+bedroom_light_half:
+  alias: "Turn on Bedroom lamp to 50% brightness"
+  sequence:
+    - alias: Turn on Bedroom Lamp
+      service: light.turn_on
+      data:
+        entity_id: 
+          - light.hue_bedroom_ambiance
+        brightness_pct: "1"
+        color_temp: "325"
+    - alias: Transition Bedroom Lamp to 50%
+      service: light.turn_on
+      data:
+        entity_id:
+          - light.hue_bedroom_ambiance
+        brightness_pct: "50"
         color_temp: "325"
         transition: "1"
 

@@ -264,10 +264,10 @@
   - service: script.turn_on
     entity_id: script.hall_lights_on_full
 
-########################################
-#   Turn on bedroom light - Weekdays   #
-########################################
-- id: bedroom_light_with_motion_weekdays
+################################################
+#   Turn on bedroom light to full - Weekdays   #
+################################################
+- id: bedroom_light_full_with_motion_weekdays
   alias: 'Turn on the bedroom light to full brightness - Weekdays'
   trigger:
   - platform: state
@@ -277,8 +277,14 @@
     condition: and
     conditions:
       - condition: time
-        after: '07:30:00'
+        after: '06:30:00'
         before: '21:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
       - condition: numeric_state
         entity_id: sensor.bedroom_light_level
         below: '10000'
@@ -288,6 +294,37 @@
   action:
   - service: script.turn_on
     entity_id: script.bedroom_light_full
+
+################################################
+#   Turn on bedroom light to half - Weekdays   #
+################################################
+- id: bedroom_light_half_with_motion_weekdays
+  alias: 'Turn on the bedroom light to half brightness - Weekdays'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.bedroom_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '21:00:00'
+        before: '05:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: numeric_state
+        entity_id: sensor.bedroom_light_level
+        below: '10000'
+      - condition: state
+        entity_id: light.bedroom
+        state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.bedroom_light_half
 
 ########################################
 #      Turn on living room light       #
@@ -303,7 +340,7 @@
     conditions:
       - condition: time
         after: '07:30:00'
-        before: '21:00:00'
+        before: '23:30:00'
       - condition: numeric_state
         entity_id: sensor.living_room_light_level
         below: '6000'
@@ -315,15 +352,17 @@
     entity_id: script.lamp_light_full
 
 #################################################################
-#       Turn off the lights with no motion after 2 min          #
+#       Turn off hall lights with no motion after 1 min         #
 #################################################################
-- id: lights_off_lights_after_motion
-  alias: 'Turn off lights 2 min after motion'
+- id: lights_off_hall_lights_after_motion
+  alias: 'Turn off hall lights 1 min after motion'
   trigger:
   - platform: numeric_state
     entity_id: sensor.hall_motion_sensor_last_update
-    above: '120'
+    above: '60'
   action:
+          #  - service: script.turn_off
+    #    entity_id: script.hallway_off
   - service: light.turn_off
     data:
       entity_id:
@@ -331,28 +370,43 @@
         - light.stairs
 
 #################################################################
-#          Turn off bedroom light if TV is  on                  #
+#       Turn off bedroom lights with no motion after 1 min      #
 #################################################################
-- id: bedlight_off_with_tv
-  alias: 'Turn off bedroom light if TV is on'
+- id: lights_off_bedroom_lights_after_motion
+  alias: 'Turn off bedroom lights 1 min after motion'
   trigger:
   - platform: numeric_state
-    entity_id: sensor.hall_motion_sensor_last_update
-    above: '120'
-  condition:
-    condition: and
-    conditions:
-      - condition: time
-        after: '12:00:00'
-        before: '00:00:00'
-      - condition: state
-        entity_id: media_player.sony_tv
-        state: 'on'
+    entity_id: sensor.bedroom_motion_sensor_last_update
+    above: '60'
   action:
-    - service: light.turn_off
-      data:
-        entity_id:
-          - light.hue_bedroom_ambiance
+  - service: light.turn_off
+    data:
+      entity_id:
+        - light.bedroom
+
+#################################################################
+#          Turn off bedroom light if TV is  on                  #
+#################################################################
+#- id: bedlight_off_with_tv
+#  alias: 'Turn off bedroom light if TV is on'
+#  trigger:
+#  - platform: numeric_state
+#    entity_id: sensor.hall_motion_sensor_last_update
+#    above: '60'
+#  condition:
+#    condition: and
+#    conditions:
+#      - condition: time
+#        after: '12:00:00'
+#        before: '00:00:00'
+#      - condition: state
+#        entity_id: media_player.sony_tv
+#        state: 'on'
+#  action:
+#    - service: light.turn_off
+#      data:
+#        entity_id:
+#          - light.bedroom
 
 #################################################################
 #            Transition bedroom light for work - Ruby           #
