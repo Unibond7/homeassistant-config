@@ -77,18 +77,17 @@ group_auto_lights:
   name: 'Automation - Lights'
   control: hidden
   entities:
-    - automation.transition_bedroom_light_for_work__ruby
-    - automation.turn_off_bedroom_light_if_tv_is_on
-    - automation.turn_off_hall_lights_1_min_after_motion
-    - automation.turn_off_bedroom_lights_1_min_after_motion
-    - automation.turn_off_lights_after_830am__weekday
-    - automation.turn_on_the_bedroom_light_to_full_brightness__weekdays
-    - automation.turn_on_the_bedroom_light_to_half_brightness__weekdays
-    - automation.turn_on_the_hall_lights_to_full_brightness__weekdays
-    - automation.turn_on_the_hall_lights_to_full_brightness__weekends
     - automation.turn_on_the_hall_lights_to_half_brightness__weekday_morningnight
     - automation.turn_on_the_hall_lights_to_half_brightness__weekend_morningnight
+    - automation.turn_on_the_hall_lights_to_full_brightness__weekdays
+    - automation.turn_on_the_hall_lights_to_full_brightness__weekends
+    - automation.turn_on_the_bedroom_light_to_full_brightness__weekdays
+    - automation.turn_on_the_bedroom_light_to_half_brightness__weekdays
     - automation.turn_on_the_living_room_light
+    - automation.turn_off_hall_lights_1_min_after_motion
+    - automation.turn_off_bedroom_lights_1_min_after_motion
+    - automation.transition_bedroom_light_for_work__ruby
+    - automation.turn_off_lights_after_830am__weekday
 
 group_auto_notifications:
   name: 'Automation - Notifications'

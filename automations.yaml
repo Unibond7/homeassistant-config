@@ -177,7 +177,7 @@
         entity_id: sensor.hall_light_level
         below: '5000'
       - condition: state
-        entity_id: light.entrance
+        entity_id: light.hallway_lights
         state: 'off'
   action:
   - service: script.turn_on
@@ -204,6 +204,9 @@
       - condition: numeric_state
         entity_id: sensor.hall_light_level
         below: '5000'
+      - condition: state
+        entity_id: light.hallway_lights
+        state: 'off'
   action:
   - service: script.turn_on
     entity_id: script.hall_lights_on_half
@@ -232,6 +235,9 @@
       - condition: numeric_state
         entity_id: sensor.hall_light_level
         below: '10000'
+      - condition: state
+        entity_id: light.hallway_lights
+        state: 'off'
   action:
   - service: script.turn_on
     entity_id: script.hall_lights_on_full
@@ -258,7 +264,7 @@
         entity_id: sensor.hall_light_level
         below: '10000' 
       - condition: state
-        entity_id: light.entrance
+        entity_id: light.hallway_lights
         state: 'off'
   action:
   - service: script.turn_on
@@ -349,7 +355,7 @@
         state: 'off'
   action:
   - service: script.turn_on
-    entity_id: script.lamp_light_full
+    entity_id: script.living_room_full
 
 #################################################################
 #       Turn off hall lights with no motion after 1 min         #
@@ -363,11 +369,6 @@
   action:
   - service: script.turn_off
     entity_id: script.hallway_off
-    #  - service: light.turn_off
-    #    data:
-    #      entity_id:
-    #        - light.entrance
-    #        - light.stairs
 
 #################################################################
 #       Turn off bedroom lights with no motion after 1 min      #
@@ -379,10 +380,8 @@
     entity_id: sensor.bedroom_motion_sensor_last_update
     above: '60'
   action:
-  - service: light.turn_off
-    data:
-      entity_id:
-        - light.bedroom
+  - service: script.turn_off
+    entity_id: script.bedroom_off
 
 #################################################################
 #            Transition bedroom light for work - Ruby           #

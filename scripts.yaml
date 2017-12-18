@@ -101,7 +101,16 @@ wakeup_bedroom:
         #        transition: '{{ states.input_slider.rubyworkalarmtransition.state | multiply(60) | int }}'
         color_temp: "400"
 
-lamp_light_full:
+bedroom_off:
+  alias: "Turn off the bedroom lights"
+  sequence:
+    - alias: Turn off the bedroom lights
+      service: light.turn_off
+      data:
+        entity_id: 
+          - light.bedroom
+
+living_room_full:
   alias: "Turn on Living Room lamp to 100% brightness"
   sequence:
     - alias: Turn on Living Room Lamp
@@ -111,4 +120,13 @@ lamp_light_full:
           - light.lamp
         brightness_pct: "100"
         color_temp: "343"
+
+living_room_off:
+  alias: "Turn off the Living room Lights"
+  sequence:
+    - alias: Turn off the Living Room Lights
+      service: light.turn_off
+      data:
+        entity_id:
+          - light.lamp
 
