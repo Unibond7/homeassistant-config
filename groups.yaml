@@ -16,16 +16,26 @@ group_speedtest:
     - sensor.speedtest_upload
     - sensor.speedtest_ping
 
-group_hue_mqtt:
-  name: 'Hue Motion Sensor (MQTT)'
+group_hue_mqtt_hall:
+  name: 'Hue Motion Sensor (MQTT) - Hall'
   control: hidden
   entities:
     - binary_sensor.hall_motion_sensor_mqtt
     - sensor.hall_temperature
     - sensor.hall_light_level
+
+group_hue_mqtt_hallway:
+  name: 'Hue Motion Sensor (MQTT) - Bedroom'
+  control: hidden
+  entities:
     - binary_sensor.bedroom_motion_sensor_mqtt
     - sensor.bedroom_temperature
     - sensor.bedroom_light_level
+
+group_hue_mqtt_living_room:
+  name: 'Hue Motion Sensor (MQTT) - Living Room'
+  control: hidden
+  entities:
     - binary_sensor.living_room_motion_sensor_mqtt
     - sensor.living_room_temperature
     - sensor.living_room_light_level
@@ -119,6 +129,16 @@ group_auto_generic:
     - automation.change_input_when_ps4_is_turned_off
     - automation.change_input_when_ps4_is_turned_on
 
+group_lights:
+  name: 'Lights'
+    - light.downstairs_lights
+    - light.upstairs_lights
+    - light.entrance
+    - light.bedroom
+    - light.stairs
+    - light.lamp
+    - lights.hallway_lights
+
 #################################################
 ################# Frontend Tabs #################
 #################################################
@@ -128,7 +148,9 @@ default_view:
    icon: mdi:home
    entities:
      - group.group_workalarmclock
-     - group.group_hue_mqtt
+     - group.group_hue_mqtt_hallway
+     - group.group_hue_mqtt_living_room
+     - group.group_hue_mqtt_bedroom
      - device_tracker.tim_phone
 
 tab_system_info:
@@ -151,12 +173,7 @@ tab_lights:
   view: yes
   name: Lights
   entities:
-    - light.downstairs_lights
-    - light.upstairs_lights
-    - light.entrance
-    - light.bedroom
-    - light.stairs
-    - light.lamp
+    - group.group_lights
 
 tab_automations:
   view: yes
