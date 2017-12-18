@@ -5,16 +5,14 @@ hall_lights_on_full:
       service: light.turn_on
       data:
         entity_id: 
-          - light.osram_hallway_candle
-          - light.osram_stairs_candle
+          - light.hallway_lights
         brightness_pct: "1"
         color_temp: "325"
     - alias: Transition Hall Lights to 100%
       service: light.turn_on
       data:
         entity_id:
-          - light.osram_hallway_candle
-          - light.osram_stairs_candle
+          - light.hallway_lights
         brightness_pct: "100"
         color_temp: "325"
         transition: "2"
@@ -26,16 +24,14 @@ hall_lights_on_half:
       service: light.turn_on
       data:
         entity_id: 
-          - light.osram_hallway_candle
-          - light.osram_stairs_candle
+          - light.hallway_lights
         brightness_pct: "1"
         color_temp: "325"
     - alias: Transition Hall Lights to 50%
       service: light.turn_on
       data:
         entity_id:
-          - light.osram_hallway_candle
-          - light.osram_stairs_candle
+          - light.hallway_lights
         brightness_pct: "50"
         color_temp: "325"
         transition: "2"
@@ -47,8 +43,7 @@ hallway_off:
       service: light.turn_off
       data:
         entity_id: 
-          - light.entrance
-          - light.stairs
+          - light.hallway_lights
 
 bedroom_light_full:
   alias: "Turn on Bedroom lamp to 100% brightness"
@@ -57,14 +52,14 @@ bedroom_light_full:
       service: light.turn_on
       data:
         entity_id: 
-          - light.hue_bedroom_ambiance
+          - light.bedroom
         brightness_pct: "1"
         color_temp: "325"
     - alias: Transition Bedroom Lamp to 100%
       service: light.turn_on
       data:
         entity_id:
-          - light.hue_bedroom_ambiance
+          - light.bedroom
         brightness_pct: "100"
         color_temp: "325"
         transition: "1"
@@ -76,14 +71,14 @@ bedroom_light_half:
       service: light.turn_on
       data:
         entity_id: 
-          - light.hue_bedroom_ambiance
+          - light.bedroom
         brightness_pct: "1"
         color_temp: "325"
     - alias: Transition Bedroom Lamp to 50%
       service: light.turn_on
       data:
         entity_id:
-          - light.hue_bedroom_ambiance
+          - light.bedroom
         brightness_pct: "50"
         color_temp: "325"
         transition: "1"
@@ -94,13 +89,13 @@ wakeup_bedroom:
     - alias: Bedroom Light On
       service: light.turn_on
       data:
-        entity_id: light.hue_bedroom_ambiance
+        entity_id: light.bedroom
         brightness_pct: "1"
         color_temp: "400"
     - alias: Bedroom Light Transition
       service: light.turn_on
       data:
-        entity_id: light.hue_bedroom_ambiance
+        entity_id: light.bedroom
         brightness_pct: "100"
         transition: "2400"
         #        transition: '{{ states.input_slider.rubyworkalarmtransition.state | multiply(60) | int }}'
