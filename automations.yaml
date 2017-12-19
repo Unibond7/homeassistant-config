@@ -378,7 +378,7 @@
   trigger:
   - platform: numeric_state
     entity_id: sensor.bedroom_motion_sensor_last_update
-    above: '60'
+    above: '240'
   action:
   - service: script.turn_on
     entity_id: script.bedroom_off

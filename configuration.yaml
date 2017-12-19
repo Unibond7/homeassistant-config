@@ -94,16 +94,18 @@ recorder:
       - light.entrance
       - light.stairs
       - light.lamp
+      - switch.hs100
       - sensor.cpu_temperature
       - sensor.cpu_use
       - sensor.ram_use
-      - sensor.hall_light_level
       - sensor.hall_temperature
       - sensor.speedtest_download
       - sensor.speedtest_upload
       - sensor.speedtest_ping
+      - sensor.fastdotcom
       - sensor.hall_motion_sensor_last_update
-
+      - sensor.bedroom_motion_sensor_last_update
+      - sensor.living_room_motion_sensor_last_update
 
 # View all events in a logbook
 #logbook:

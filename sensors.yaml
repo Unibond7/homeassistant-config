@@ -25,7 +25,7 @@
   scan_interval: 14400
 
 - platform: speedtest
-  server_id: 8066
+  server_id: 2789
   hour:
     - 4
     - 15
@@ -33,6 +33,13 @@
     - ping
     - download
     - upload
+
+- platform: fastdotcom
+  hour:
+    - 4
+    - 15
+  minute:
+    - 30
 
 #- platform: hue_sensors
 
