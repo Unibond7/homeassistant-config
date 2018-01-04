@@ -15,7 +15,7 @@ group_speedtest:
     - sensor.speedtest_download
     - sensor.speedtest_upload
     - sensor.speedtest_ping
-    - sensor.fastdotcom
+    - sensor.fastcom_download
 
 group_hue_mqtt_hallway:
   name: 'Hue Motion Sensor (MQTT) - Hallway'

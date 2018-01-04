@@ -22,3 +22,10 @@
   name: 'Living Room Motion Sensor (MQTT)'
   payload_on: "true"
   payload_off: "false"
+
+- platform: mqtt
+  device_class: motion
+  state_topic: hue/hue_motion_sensor_4/presence
+  name: 'Kitchen Motion Sensor (MQTT)'
+  payload_on: "true"
+  payload_off: "false"

@@ -79,6 +79,18 @@
   value_template: '{{ value_json }}'
   # value_template: '{{ int(float(10**((value_json-1)/10000)) | round) }}'
 
+- platform: mqtt
+  state_topic: 'hue/hue_temperature_sensor_4/temperature'
+  name: 'Living Room Temperature'
+  unit_of_measurement: '°C'
+  value_template: '{{ ( value_json |  float / 100 ) | round(1) }}'
+- platform: mqtt
+  state_topic: 'hue/hue_ambient_light_sensor_4/lightlevel'
+  name: 'Living Room Light Level'
+  unit_of_measurement: 'Lux'
+  value_template: '{{ value_json }}'
+  # value_template: '{{ int(float(10**((value_json-1)/10000)) | round) }}'
+
 - platform: template
   sensors:
    ruby_work_alarm_time:
@@ -120,6 +132,24 @@
     bedroom_motion_sensor_last_update:
       friendly_name: Last Update of Bedroom Motion Sensor 
       value_template: '{% if states.binary_sensor.bedroom_motion_sensor_mqtt.last_updated is undefined %}{{"00:00:00"}}{% else %}{{ ((as_timestamp(states.sensor.date__time.last_updated)-as_timestamp(states.binary_sensor.bedroom_motion_sensor_mqtt.last_updated)) | int) }}{% endif %}'
+      unit_of_measurement: 's'
+      entity_id:
+        - sensor.date__time
+
+- platform: template
+  sensors:
+    living_motion_sensor_last_update:
+      friendly_name: Last Update of Living Room Motion Sensor 
+      value_template: '{% if states.binary_sensor.living_room_motion_sensor_mqtt.last_updated is undefined %}{{"00:00:00"}}{% else %}{{ ((as_timestamp(states.sensor.date__time.last_updated)-as_timestamp(states.binary_sensor.living_room_motion_sensor_mqtt.last_updated)) | int) }}{% endif %}'
+      unit_of_measurement: 's'
+      entity_id:
+        - sensor.date__time
+
+- platform: template
+  sensors:
+    kitchen_motion_sensor_last_update:
+      friendly_name: Last Update of Kitchen Motion Sensor 
+      value_template: '{% if states.binary_sensor.kitchen_motion_sensor_mqtt.last_updated is undefined %}{{"00:00:00"}}{% else %}{{ ((as_timestamp(states.sensor.date__time.last_updated)-as_timestamp(states.binary_sensor.kitchen_motion_sensor_mqtt.last_updated)) | int) }}{% endif %}'
       unit_of_measurement: 's'
       entity_id:
         - sensor.date__time

@@ -7,7 +7,6 @@ hall_lights_on_full:
         entity_id: 
           - light.hallway_lights
         brightness_pct: "1"
-        color_temp: "325"
     - alias: Transition Hall Lights to 100%
       service: light.turn_on
       data:
@@ -26,7 +25,6 @@ hall_lights_on_half:
         entity_id: 
           - light.hallway_lights
         brightness_pct: "1"
-        color_temp: "325"
     - alias: Transition Hall Lights to 50%
       service: light.turn_on
       data:
