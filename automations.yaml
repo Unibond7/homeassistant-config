@@ -357,6 +357,41 @@
   - service: script.turn_on
     entity_id: script.living_room_full
 
+########################################
+#       Turn on kitchen  lights        #
+########################################
+- id: kitchen_lights_on_with_motion
+  alias: 'Turn on the kitchen lights'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.kitchen_motion_sensor_mqtt
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.kitchen_light_level
+        below: '6000'
+      - condition: state
+        entity_id: switch.hs100
+        state: 'off'
+  action:
+  - service: script.turn_on
+    entity_id: script.kitchen_on
+
+########################################
+#       Turn off kitchen  lights       #
+########################################
+- id: kitchen_lights_off_after_motion
+  alias: 'Turn off the kitchen lights'
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.kitchen_motion_sensor_last_update
+    above: '60'
+  action:
+  - service: script.turn_on
+    entity_id: script.kitchen_off
+
 #################################################################
 #       Turn off hall lights with no motion after 1 min         #
 #################################################################
@@ -371,14 +406,14 @@
     entity_id: script.hallway_off
 
 #################################################################
-#       Turn off bedroom lights with no motion after 1 min      #
+#       Turn off bedroom lights with no motion after 8 min      #
 #################################################################
 - id: lights_off_bedroom_lights_after_motion
-  alias: 'Turn off bedroom lights 1 min after motion'
+  alias: 'Turn off bedroom lights 8 min after motion'
   trigger:
   - platform: numeric_state
     entity_id: sensor.bedroom_motion_sensor_last_update
-    above: '240'
+    above: '480'
   action:
   - service: script.turn_on
     entity_id: script.bedroom_off
