@@ -173,9 +173,6 @@
           - wed
           - thu
           - fri
-      - condition: numeric_state
-        entity_id: sensor.hall_light_level
-        below: '5000'
       - condition: state
         entity_id: light.hallway_lights
         state: 'off'
@@ -201,9 +198,6 @@
         weekday:
           - sat
           - sun
-      - condition: numeric_state
-        entity_id: sensor.hall_light_level
-        below: '5000'
       - condition: state
         entity_id: light.hallway_lights
         state: 'off'
@@ -232,9 +226,6 @@
           - wed
           - thu
           - fri
-      - condition: numeric_state
-        entity_id: sensor.hall_light_level
-        below: '10000'
       - condition: state
         entity_id: light.hallway_lights
         state: 'off'
@@ -260,9 +251,6 @@
         weekday:
           - sat
           - sun
-      - condition: numeric_state
-        entity_id: sensor.hall_light_level
-        below: '10000' 
       - condition: state
         entity_id: light.hallway_lights
         state: 'off'
@@ -291,9 +279,6 @@
           - wed
           - thu
           - fri
-      - condition: numeric_state
-        entity_id: sensor.bedroom_light_level
-        below: '10000'
       - condition: state
         entity_id: light.bedroom
         state: 'off'
@@ -322,9 +307,6 @@
           - wed
           - thu
           - fri
-      - condition: numeric_state
-        entity_id: sensor.bedroom_light_level
-        below: '10000'
       - condition: state
         entity_id: light.bedroom
         state: 'off'
@@ -347,9 +329,6 @@
       - condition: time
         after: '07:30:00'
         before: '23:30:00'
-      - condition: numeric_state
-        entity_id: sensor.living_room_light_level
-        below: '6000'
       - condition: state
         entity_id: light.lamp
         state: 'off'
@@ -369,9 +348,6 @@
   condition:
     condition: and
     conditions:
-      - condition: numeric_state
-        entity_id: sensor.kitchen_light_level
-        below: '6000'
       - condition: state
         entity_id: switch.hs100
         state: 'off'
