@@ -41,6 +41,14 @@ group_hue_mqtt_living_room:
     - sensor.living_room_temperature
     - sensor.living_room_light_level
 
+group_hue_mqtt_kitchen:
+  name: 'Hue Motion Sensor (MQTT) - Kitchen'
+  control: hidden
+  entities:
+    - binary_sensor.kitchen_motion_sensor_mqtt
+    - sensor.kitchen_temperature
+    - sensor.kitchen_light_level
+
 #group_hue_hass_comp:
 #  name: 'Hue Accesories'
 #  control: hidden
@@ -71,6 +79,8 @@ group_scripts:
     - script.bedroom_off
     - script.living_room_full
     - script.living_room_off
+    - script.kitchen_on
+    - script.kitchen_off
 
 group_scenes:
   name: 'Scenes'
@@ -98,9 +108,11 @@ group_auto_lights:
     - automation.turn_on_the_bedroom_light_to_half_brightness__weekdays
     - automation.turn_on_the_living_room_light
     - automation.turn_off_hall_lights_1_min_after_motion
-    - automation.turn_off_bedroom_lights_1_min_after_motion
+    - automation.turn_off_bedroom_lights_8_min_after_motion
     - automation.transition_bedroom_light_for_work__ruby
     - automation.turn_off_lights_after_830am__weekday
+    - automation.turn_on_the_kitchen_lights
+    - automation.turn_off_the_kitchen_lights
 
 group_auto_notifications:
   name: 'Automation - Notifications'
@@ -153,6 +165,7 @@ default_view:
      - group.group_hue_mqtt_hallway
      - group.group_hue_mqtt_living_room
      - group.group_hue_mqtt_bedroom
+     - group.group_hue_mqtt_kitchen
      - device_tracker.tim_phone
 
 tab_system_info:
