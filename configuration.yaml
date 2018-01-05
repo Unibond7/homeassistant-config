@@ -99,13 +99,11 @@ recorder:
       - sensor.cpu_use
       - sensor.ram_use
       - sensor.hall_temperature
-      - sensor.speedtest_download
-      - sensor.speedtest_upload
-      - sensor.speedtest_ping
       - sensor.fastcom_download
       - sensor.hall_motion_sensor_last_update
       - sensor.bedroom_motion_sensor_last_update
-      - sensor.living_room_motion_sensor_last_update
+      - sensor.living_motion_sensor_last_update
+      - sensor.kitchen_motion_sensor_last_update
 
 # View all events in a logbook
 #logbook:
