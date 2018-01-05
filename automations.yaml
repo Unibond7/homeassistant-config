@@ -327,7 +327,7 @@
     condition: and
     conditions:
       - condition: time
-        after: '07:30:00'
+        after: '05:30:00'
         before: '23:30:00'
       - condition: state
         entity_id: light.lamp

@@ -37,6 +37,12 @@ hall_lights_on_half:
 hallway_off:
   alias: "Turn off the hallway lights"
   sequence:
+    - alias: Set Hallway to 1% Brightness
+      service: light.turn_on
+      data:
+        entity_id: 
+          - light.hallway_lights
+        brightness_pct: "1"
     - alias: Turn off the hallway lights
       service: light.turn_off
       data:
