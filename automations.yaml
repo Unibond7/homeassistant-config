@@ -337,6 +337,31 @@
     entity_id: script.living_room_full
 
 ########################################
+#      Turn off living room light      #
+########################################
+- id: living_room_light_off
+  alias: 'Turn off the living room light after 3 min and no TV'
+  trigger:
+  - platform: numeric_state
+    entity_id:  sensor.living_motion_sensor_last_update
+    above: '150'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '05:30:00'
+        before: '23:30:00'
+      - condition: state
+        entity_id: media_player.sony_tv
+        state: 'off'
+      - condition: state
+        entity_id: light.lamp
+        state: 'on'
+  action:
+  - service: script.turn_on
+    entity_id: script.living_room_full
+
+########################################
 #       Turn on kitchen  lights        #
 ########################################
 - id: kitchen_lights_on_with_motion
