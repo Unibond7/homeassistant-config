@@ -359,7 +359,7 @@
         state: 'on'
   action:
   - service: script.turn_on
-    entity_id: script.living_room_full
+    entity_id: script.living_room_off
 
 ########################################
 #       Turn on kitchen  lights        #

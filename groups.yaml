@@ -107,6 +107,7 @@ group_auto_lights:
     - automation.turn_on_the_bedroom_light_to_full_brightness__weekdays
     - automation.turn_on_the_bedroom_light_to_half_brightness__weekdays
     - automation.turn_on_the_living_room_light
+    - automation.turn_off_the_living_room_light_after_3_min_and_no_tv
     - automation.turn_off_hall_lights_1_min_after_motion
     - automation.turn_off_bedroom_lights_8_min_after_motion
     - automation.transition_bedroom_light_for_work__ruby
