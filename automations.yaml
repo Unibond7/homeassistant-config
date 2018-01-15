@@ -157,6 +157,7 @@
 ###########################################################################
 - id: hall_lights_half_with_motion_weekday_morning_night
   alias: 'Turn on the hall lights to half brightness - Weekday Morning/Night'
+  initial_state: 'off'
   trigger:
   - platform: state
     entity_id: binary_sensor.hall_motion_sensor_mqtt
@@ -185,6 +186,7 @@
 ###########################################################################
 - id: hall_lights_half_with_motion_weekend_morning_night
   alias: 'Turn on the hall lights to half brightness - Weekend Morning/Night'
+  initial_state: 'off'
   trigger:
   - platform: state
     entity_id: binary_sensor.hall_motion_sensor_mqtt
@@ -210,6 +212,7 @@
 #############################################################
 - id: hall_lights_full_with_motion_weekdays
   alias: 'Turn on the hall lights to full brightness - Weekdays'
+  initial_state: 'off'
   trigger:
   - platform: state
     entity_id: binary_sensor.hall_motion_sensor_mqtt
@@ -238,6 +241,7 @@
 #############################################################
 - id: hall_lights_full_with_motion_weekends
   alias: 'Turn on the hall lights to full brightness - Weekends'
+  initial_state: 'off'
   trigger:
   - platform: state
     entity_id: binary_sensor.hall_motion_sensor_mqtt
@@ -263,6 +267,7 @@
 ################################################
 - id: bedroom_light_full_with_motion_weekdays
   alias: 'Turn on the bedroom light to full brightness - Weekdays'
+  initial_state: 'off'
   trigger:
   - platform: state
     entity_id: binary_sensor.bedroom_motion_sensor_mqtt
@@ -291,6 +296,7 @@
 ################################################
 - id: bedroom_light_half_with_motion_weekdays
   alias: 'Turn on the bedroom light to half brightness - Weekdays'
+  initial_state: 'off'
   trigger:
   - platform: state
     entity_id: binary_sensor.bedroom_motion_sensor_mqtt
@@ -398,6 +404,7 @@
 #################################################################
 - id: lights_off_hall_lights_after_motion
   alias: 'Turn off hall lights 1 min after motion'
+  initial_state: 'off'
   trigger:
   - platform: numeric_state
     entity_id: sensor.hall_motion_sensor_last_update
@@ -411,6 +418,7 @@
 #################################################################
 - id: lights_off_bedroom_lights_after_motion
   alias: 'Turn off bedroom lights 8 min after motion'
+  initial_state: 'off'
   trigger:
   - platform: numeric_state
     entity_id: sensor.bedroom_motion_sensor_last_update
@@ -424,6 +432,7 @@
 #################################################################
 - id: morning_light_transition
   alias: 'Transition bedroom light for work - Ruby'
+  initial_state: 'off'
   trigger:
   - platform: template
     value_template: '{{ states.sensor.time.state == states.sensor.ruby_work_alarm_time.state }}'

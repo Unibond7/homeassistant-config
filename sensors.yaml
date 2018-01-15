@@ -171,8 +171,9 @@
 #     mode: driving
 #     traffic_model: pessimistic
 
-# - platform: london_underground
-#   line:
-#     - Victoria
+- platform: london_underground
+  line:
+    - Victoria
+    - London Overground
 #     - Northern
 
