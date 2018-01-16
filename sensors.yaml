@@ -184,3 +184,6 @@
     - mode: train
       origin: WCY
       destination: CNN
+    - mode: train
+      origin: CNN
+      destination: WCY
