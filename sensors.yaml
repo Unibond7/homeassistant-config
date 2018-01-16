@@ -154,6 +154,27 @@
       entity_id:
         - sensor.date__time
 
+- platform: template
+  sensors:
+    next_train_status_to_hhy:
+      friendly_name: 'Next train status to Canonbury'
+      value_template: '{{states.sensor.next_train_to_hhy.attributes.next_trains[0].status}}'
+    next_train_estimated_to_hhy:
+      friendly_name: 'Next train estimated to Canonbury'
+      value_template: '{{states.sensor.next_train_to_hhy.attributes.next_trains[0].estimated}}'
+    next_train_platform_to_hhy:
+      friendly_name: 'Next train platform to Canonbury'
+      value_template: '{{states.sensor.next_train_to_hhy.attributes.next_trains[0].platform}}'
+    next_train_status_to_wcy:
+      friendly_name: 'Next train status to West Croydon'
+      value_template: '{{states.sensor.next_train_to_wcy.attributes.next_trains[0].status}}'
+    next_train_estimated_to_wcy:
+      friendly_name: 'Next train estimated to West Croydon'
+      value_template: '{{states.sensor.next_train_to_wcy.attributes.next_trains[0].estimated}}'
+    next_train_platform_to_wcy:
+      friendly_name: 'Next train platform to West Croydon'
+      value_template: '{{states.sensor.next_train_to_wcy.attributes.next_trains[0].platform}}'
+
 - platform: systemmonitor
   resources:
     - type: disk_use_percent
@@ -183,7 +204,7 @@
   queries:
     - mode: train
       origin: WCY
-      destination: CNN
+      destination: HHY
     - mode: train
       origin: CNN
       destination: WCY
