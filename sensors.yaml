@@ -177,3 +177,10 @@
     - London Overground
 #     - Northern
 
+- platform: uk_transport
+  app_id: !secret transport_id
+  app_key: !secret transport_key
+  queries:
+    - mode: train
+      origin: WCY
+      destination: CNN
