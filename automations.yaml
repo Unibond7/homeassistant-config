@@ -432,7 +432,7 @@
 #################################################################
 - id: morning_light_transition
   alias: 'Transition bedroom light for work - Ruby'
-  initial_state: 'off'
+  initial_state: 'on'
   trigger:
   - platform: template
     value_template: '{{ states.sensor.time.state == states.sensor.ruby_work_alarm_time.state }}'

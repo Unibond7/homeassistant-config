@@ -206,5 +206,5 @@
       origin: WCY
       destination: HHY
     - mode: train
-      origin: CNN
+      origin: HHY
       destination: WCY
